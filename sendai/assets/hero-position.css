@@ -1,0 +1,41 @@
+/* STEP 1: TOP人物を右側に配置。既存の文字・ボックス配置は変更しない。 */
+.hero-reference-inner{
+  position:relative !important;
+}
+.hero-person{
+  position:absolute !important;
+  right:-18px !important;
+  bottom:0 !important;
+  width:39% !important;
+  height:100% !important;
+  z-index:2 !important;
+  display:flex !important;
+  align-items:flex-end !important;
+  justify-content:flex-end !important;
+  pointer-events:none !important;
+  background:transparent !important;
+}
+.hero-person img{
+  display:block !important;
+  height:90% !important;
+  width:auto !important;
+  max-width:none !important;
+  object-fit:contain !important;
+  object-position:right bottom !important;
+  transform:none !important;
+  background:transparent !important;
+  filter:drop-shadow(0 10px 16px rgba(0,0,0,.12)) !important;
+}
+.hero-reference .hero-left{
+  position:relative !important;
+  z-index:3 !important;
+}
+@media(max-width:700px){
+  .hero-person{
+    right:-24px !important;
+    width:42% !important;
+  }
+  .hero-person img{
+    height:78% !important;
+  }
+}
