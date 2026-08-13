@@ -1,1 +1,21 @@
-(()=>{const r=document.querySelectorAll('.rv'),io=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target)}}),{threshold:.1});r.forEach(x=>io.observe(x));const b=document.getElementById('bar');addEventListener('scroll',()=>{const d=document.documentElement,m=d.scrollHeight-innerHeight;b.style.width=(m?scrollY/m*100:0)+'%'},{passive:true});document.querySelectorAll('details').forEach(x=>x.addEventListener('toggle',()=>{if(x.open)document.querySelectorAll('details[open]').forEach(y=>{if(y!==x)y.open=false})}));const j=document.getElementById('jobs');setTimeout(()=>{if(j&&j.scrollWidth>j.clientWidth){j.scrollTo({left:70,behavior:'smooth'});setTimeout(()=>j.scrollTo({left:0,behavior:'smooth'}),800)}},1600)})();
+(()=>{
+  const items=document.querySelectorAll('.reveal');
+  if('IntersectionObserver' in window){
+    const io=new IntersectionObserver(entries=>{
+      entries.forEach(entry=>{
+        if(entry.isIntersecting){
+          entry.target.classList.add('is-visible');
+          io.unobserve(entry.target);
+        }
+      });
+    },{threshold:.08,rootMargin:'0px 0px -30px'});
+    items.forEach(item=>io.observe(item));
+  }else{items.forEach(item=>item.classList.add('is-visible'));}
+  document.querySelectorAll('.faq details').forEach(detail=>{
+    detail.addEventListener('toggle',()=>{
+      if(detail.open){
+        document.querySelectorAll('.faq details[open]').forEach(other=>{if(other!==detail)other.open=false;});
+      }
+    });
+  });
+})();
